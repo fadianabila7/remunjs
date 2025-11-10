@@ -1,0 +1,114 @@
+<div class="right_col" role="main">
+          <div class="row wrapper border-bottom white-bg dashboard-header">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Tambah Mata Kuliah</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <!-- <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Go!</button>
+                          </span>
+                  </div>-->
+                </div>
+              </div>
+            </div>
+           <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                <h2>Form Ubah Mata Kuliah</h2>
+                
+                  <div class="x_content">
+                    <?php foreach ($data['dataMataKuliah'] as $key) {
+                    $link = "pengajaran/do_editmatakuliah/".$key['id_matakuliah'];
+                   ?>
+                    <form class="form-horizontal form-label-left" method="POST" action="<?php echo site_url($link)?>">
+                   
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Kode Mata Kuliah</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="namLab" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="kode_matkul" id="kode_matkul" value="<?php echo $key['kode']?>" required="required" type="text">
+                        </div>
+                      </div>
+
+                      
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Mata Kuliah</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="namaMatkul" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="namaMatkul" id="namaMatkul" value="<?php echo $key['nama']?>" required="required" type="text">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah SKS</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                          <input id="sks" class="form-control col-md-7 col-xs-12" name="sks" min="0" max="10" id="sks" value="<?php echo $key['sks']?>" required="required" type="number" onfocusout="FunctionChekSKS()">
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Tahun Kurikulum</label>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                         <input type="number" min="2000" max="2500" name="tahunkurikulum" class="form-control" required value="<?php echo $key['tahun_kurikulum']?>">
+                        </div>
+                      </div>
+
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kondisi">Status<span class="required">*</span>
+                        </label>
+                         <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select class="select2_single form-control" tabindex="-1" name="status" id="status">  <option value="placeholder"><?php 
+                        if($key['status_aktif']==1){
+                          echo "Aktif";
+                        }
+                        else{
+                          echo "Tidak Aktif";
+                        }
+                       ?></option>>
+                          <option value="1">Aktif</option>
+                          <option value="0">Tidak AKtif</option>
+
+                          </select>      
+                          </div>
+                      </div>
+                      <?php }?>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <button type="button" class="btn btn-primary" id="cancel" onclick="window.history.go(-1); return false;" name="cancel">Cancel</button>
+                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+          <script type="text/javascript">
+          function FunctionChekSKS() {
+      
+              var a = $("#sks").val();
+              if(a<1 || a>10){
+             
+             
+               swal({
+                          title: "Peringatan",
+                          text: "Jumlah SKS Harus 0 < SKS < 10."
+                      });
+              $("#sks").val("1");
+              $("#sks").html("1");
+             }
+          }
+        </script>

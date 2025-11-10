@@ -1,0 +1,27 @@
+<?php 
+Class User extends CI_Model
+{
+ function login($username, $password)
+ {
+  
+
+   $this->db->select ( 'u.id_user,u.id_role,u.password,a.id_bendahara,a.id_fakultas,a.nama, f.nama as namaf'); 
+    $this->db->from ( 'user u' );
+    $this->db->join ( 'bendahara a', 'u.id_user = a.id_user' , 'left' );    
+    $this->db->join ('fakultas f', 'a.id_fakultas = f.id_fakultas', 'left');
+    $this->db->where ( 'u.id_user', $username);
+    $this->db->where('u.password', $password);
+ 
+   $query = $this -> db -> get();
+ 
+   if($query -> num_rows() == 1)
+   {
+     return $query->result();
+   }
+   else
+   {
+     return false;
+   }
+ }
+}
+?>

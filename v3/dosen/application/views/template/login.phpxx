@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Website Maintenis</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<center>
+		<pre>Server up pada tanggal 10 November 2017 jam 11:00.</pre>
+		<br><br><br>
+		<img src="<?php echo base_url('assets');?>/img/maintenis.png" alt="">
+	</center>
+	
+</body>
+</html>
